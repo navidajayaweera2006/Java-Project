@@ -31,6 +31,7 @@ public class Transaction {
         return this;
     }
 
+    // Modified to accept viewing account perspective
     public String getTransactionDetails(String viewingAccountNumber) {
         String msg = "";
         if (type == TransactionType.DEPOSIT) {
@@ -49,7 +50,7 @@ public class Transaction {
         return msg + " on " + timestamp;
     }
 
-    // backward compatibility
+    // Original method for backwards compatibility
     public String getTransactionDetails() {
         String msg = "";
         if (type == TransactionType.DEPOSIT) {

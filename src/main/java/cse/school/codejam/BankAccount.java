@@ -19,15 +19,16 @@ public class BankAccount {
         if (amount <= 0) {
             throw new IllegalArgumentException("Deposit amount must be positive");
         }
+        this.balance += amount; // Fixed: Add amount to balance
     }
 
     public void withdraw(double amount) {
         if (amount <= 0 || amount > balance) throw new IllegalArgumentException("Invalid withdrawal.");
-        balance += amount;
+        balance -= amount; // Fixed: Subtract amount from balance
     }
 
     public double getBalance() {
-        return 0.0;
+        return balance; // Fixed: Return actual balance
     }
 
     public String getAccountDetails() {
@@ -35,7 +36,7 @@ public class BankAccount {
     }
 
     public String getAccountNumber() {
-        return "accountNumber";
+        return accountNumber; // Fixed: Return actual account number
     }
 
     public void setAccountHolderName(String name) {

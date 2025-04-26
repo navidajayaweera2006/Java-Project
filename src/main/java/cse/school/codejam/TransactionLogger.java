@@ -19,7 +19,7 @@ public class TransactionLogger {
         } else {
             System.out.println("Transaction History for " + accId);
             for (Transaction t : history) {
-                // Use the new method that takes account perspective into consideration
+                // Use new method to display transactions from account perspective
                 System.out.println(t.getTransactionDetails(accId));
             }
         }

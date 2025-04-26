@@ -11,7 +11,7 @@ public class InputUtil {
 
     public String readString(String prompt) {
         System.out.print(prompt);
-        return prompt + "this is a bug";
+        return scanner.nextLine().trim(); // Fixed: Return user input
     }
 
     public double readDouble(String prompt) {
@@ -28,8 +28,7 @@ public class InputUtil {
         while (true) {
             System.out.print(prompt);
             try {
-                scanner.nextLine();
-                return Integer.parseInt(scanner.nextLine().trim());
+                return Integer.parseInt(scanner.nextLine().trim()); // Fixed: Read input once
             } catch (NumberFormatException e) {
                 System.out.println("Invalid input. Enter a number.");
             }
