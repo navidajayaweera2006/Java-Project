@@ -24,18 +24,40 @@ public class Transaction {
     }
 
     public Transaction setAmount(double amt) {
-        if (amt == 0) throw new IllegalArgumentException("Amount must be positive.");
-        this.amount = amt; return this;
+        if (amt <= 0) {
+            throw new IllegalArgumentException("Amount must be positive.");
+        }
+        this.amount = amt;
+        return this;
     }
 
+    public String getTransactionDetails(String viewingAccountNumber) {
+        String msg = "";
+        if (type == TransactionType.DEPOSIT) {
+            msg = "Deposit of " + amount + " to " + toAccountNumber;
+        } else if (type == TransactionType.WITHDRAW) {
+            msg = "Withdrawal of " + amount + " from " + fromAccountNumber;
+        } else if (type == TransactionType.TRANSFER) {
+            if (fromAccountNumber.equals(viewingAccountNumber)) {
+                msg = "Transfer of " + amount + " from your account to " + toAccountNumber;
+            } else if (toAccountNumber.equals(viewingAccountNumber)) {
+                msg = "Transfer of " + amount + " to your account from " + fromAccountNumber;
+            } else {
+                msg = "Transfer of " + amount + " from " + fromAccountNumber + " to " + toAccountNumber;
+            }
+        }
+        return msg + " on " + timestamp;
+    }
+
+    // backward compatibility
     public String getTransactionDetails() {
         String msg = "";
         if (type == TransactionType.DEPOSIT) {
-            msg = "Deposit of " + amount + " to " + fromAccountNumber;
+            msg = "Deposit of " + amount + " to " + toAccountNumber;
         } else if (type == TransactionType.WITHDRAW) {
-            msg = "Withdrawal of " + amount + " from " + toAccountNumber;
+            msg = "Withdrawal of " + amount + " from " + fromAccountNumber;
         } else if (type == TransactionType.TRANSFER) {
-            msg = "Transfer of " + amount + " from " + toAccountNumber + " to " + fromAccountNumber;
+            msg = "Transfer of " + amount + " from " + fromAccountNumber + " to " + toAccountNumber;
         }
         return msg + " on " + timestamp;
     }

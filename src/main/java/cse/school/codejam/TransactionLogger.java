@@ -1,6 +1,9 @@
 package cse.school.codejam;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class TransactionLogger {
     private final Map<String, List<Transaction>> map = new HashMap<>();
@@ -16,7 +19,8 @@ public class TransactionLogger {
         } else {
             System.out.println("Transaction History for " + accId);
             for (Transaction t : history) {
-                System.out.println(t.getTransactionDetails());
+                // Use the new method that takes account perspective into consideration
+                System.out.println(t.getTransactionDetails(accId));
             }
         }
     }
